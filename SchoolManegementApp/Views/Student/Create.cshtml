@@ -1,0 +1,148 @@
+﻿<style>
+    .Size-1 {
+        width: 500px;
+    }
+
+    .DivStyle {
+        float: left;
+    }
+
+    .DivStyleSecond{
+        float: right;
+    }
+
+    .DivStyleMargin {
+        margin-left: 20px;
+        padding:0px;
+    }
+    .clearBoth{
+        clear:both;
+        margin-top:0px;
+    }
+    .mainDiv {
+        display: flex;
+        justify-content: center;
+        //align-items: center;
+        height: auto;
+        /* border:2px solid red; */
+    }
+
+    .buttonDiv {
+        width:100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: auto;
+        /* border:2px solid red;    */
+    }
+
+    html, body {
+        width: 100%;
+        margin: 0px;
+        padding: 0px;
+    }
+
+</style>
+
+@model SchoolManegementApp.Models.student
+<h1 style="text-align:center" class="text-primary">Student Create</h1>
+</h1>
+
+<form method="post" enctype="multipart/form-data" asp-controller="Student" asp-action="create">
+    <div class="mainDiv">
+        <div class="DivStyle" style="margin-left:150px;">
+            <div class="mb-2 Size-1">
+                <label for="textId">Id</label>
+                <input type="text" asp-for="id" class="form-control">
+            </div>
+            <div class="mb-2 Size-1">
+                <label for="textStudentId">Student Id</label>
+                <input type="text" asp-for="studentId" class="form-control">
+            </div>
+            <div class="mb-2 Size-1">
+                <label for="textStudentId">Student Name</label>
+                <input type="text" asp-for="studentName" class="form-control">
+            </div>
+            <div class="mb-2 Size-1">
+                <label for="studentAddress">Student Address</label>
+                <textarea asp-for="studentAddress" class="form-control" rows="5"></textarea>
+            </div>
+            
+            <div class="mb-2 Size-1">
+                <label for="dateOfBirth">Student date of birth</label>
+                <input type="date" asp-for="dateOfBirth" class="form-control">
+            </div>
+            <div class="mb-2 Size-1">
+                <label for="studentClass">Student Class</label>
+                <select class="form-control" asp-for="studentClass">
+                    <option disabled selected>---Select Class---</option>
+                    <option>Class-5</option>
+                    <option>Class-6</option>
+                    <option>Class-7</option>
+                    <option>Class-8</option>
+                    <option>Class-9</option>
+                    <option>Class-10</option>
+                </select>
+            </div>
+             <div class="mb-2 Size-1">
+                <label for="AdmissionDate">Student Admission Date</label>
+                <input type="date" asp-for="admissionDate" class="form-control">
+            </div>
+            <div class="mb-2 Size-1">
+                <label for="textEmail">Email</label>
+                <input type="text" asp-for="email" class="form-control">
+            </div>
+            <div class="mb-2 Size-1">
+                <label for="textFatherName">Father Name</label>
+                <input type="text" asp-for="fatherName" class="form-control">
+            </div>
+            <div class="mb-2 Size-1">
+                <label for="textmother Name">Mother Name</label>
+                <input type="text" asp-for="motherName" class="form-control">
+            </div>
+            <div class="mb-2 Size-1">
+                <label for="textMobileNumber">Mobile Number</label>
+                <input type="text" asp-for="mobileNumber" class="form-control">
+            </div>
+            <div class="mb-2 Size-1">
+                <label for="studentGender">Gender&nbsp;&nbsp;&nbsp;</label>
+                <input type="radio" asp-for="studentGender" value="Male" />Male
+                <input type="radio" asp-for="studentGender" value="Female" />Female
+            </div>
+        </div>
+
+
+        <div class="DivStyleSecond DivStyleMargin">
+            <div class="mb-2 Size-1">
+                <label style="text-align:center">Student picture</label>
+            </div>
+            <div>
+                <img id="previewImage" width="300px" height="300px" />
+            </div>
+            <div>
+                <input type="file" accept="image/*" name="Files" id="uploadBox" onchange="loadFile(event)" />
+            </div>
+        </div>
+
+    </div>
+    <div class="buttonDiv">
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </div>
+    
+    <br />
+    <br />
+    <br />
+</form>
+
+<script>
+
+    var loadFile = function (event) {
+        var output = document.getElementById('previewImage');
+        output.src = URL.createObjectURL(event.target.files[0]);
+        output.onload = function () {
+            URL.revokeObjectURL(output.src) // free memory
+        }
+    };
+
+
+</script>
